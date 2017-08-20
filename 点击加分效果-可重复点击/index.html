@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="index.css">
+</head>
+<body>
+	<section class="box">
+		<ul class="list clearfix">
+			<li class="item">
+				<div class="pic"></div>
+				<a href="javascript:;" class="btn">+1</a>
+				<span class="ico"></span>
+			</li>
+			<li class="item">
+				<div class="pic"></div>
+				<a href="javascript:;" class="btn">+1</a>
+				<span class="ico"></span>
+			</li>
+			<li class="item">
+				<div class="pic"></div>
+				<a href="javascript:;" class="btn">+1</a>
+				<span class="ico"></span>
+			</li>
+			<li class="item">
+				<div class="pic"></div>
+				<a href="javascript:;" class="btn">+1</a>
+				<span class="ico"></span>
+			</li>
+		</ul>
+	</section>
+	<script src="tools.js"></script>
+	<script>
+		//需求：
+		//1.当鼠标移入按钮的时候，按钮的背景图片发生变化(给按钮添加hover效果，在CSS里面实现效果即可)
+		//2、当点击按钮的时候，按钮上的数字随着点击次数增加，并且有桃心向上移出，透明度随之减淡
+		var btn=document.querySelectorAll('.btn');//console.log(btn);
+		var ico=document.querySelectorAll('.ico');
+		var len=btn.length;
+		for(var i=0;i<len;i++){
+			btn[i].index=ico[i].index=i;
+			btn[i].onclick=function (){
+				var a=this.index;
+				if(ico[a].timer){
+					return;
+				}
+				btn[a].innerHTML='+'+(Number(btn[a].innerHTML)+1);
+				ico[a].style.display='block';
+				mTween(ico[a], {
+					'opacity':0,
+					'top':-150
+				}, 20, 'linear', function (){
+					mTween(ico[a],{
+						'opacity':1,
+						'top':-71
+					},1,'linear')
+					ico[a].style.display='';
+				});
+			};
+		}
+		
+	</script>
+</body>
+</html>

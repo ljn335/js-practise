@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		body{
+			margin:0;
+		}
+		ul{
+			margin:0;
+			padding:0;
+			list-style:none;
+		}
+		.box{
+			width:540px;
+			height:554px;
+			background:url(img/bg.png) no-repeat;
+			margin:50px auto;
+			display:flex;
+			justify-content:center;
+			align-items:center;
+			flex-direction:column;
+		}
+		.logo{
+			width:200px;
+			height:48px;
+			background:url(img/ALL_03.png) no-repeat;
+			margin-bottom:30px;
+		}
+		.content{
+			width:390px;
+			height:370px;
+			background:#3c278b;
+			color:#fff;
+			font:16px/40px "微软雅黑";
+		}
+		.content .left,.content .center,.content .right{
+			float:left;
+			height:100%;
+		}
+		.content .left,.content .right{
+			width:145px;
+			background:#3c278b;
+		}
+		li{
+			margin-top:5px;
+		}
+		li i{
+			display:inline-block;
+			width:8px;
+			height:8px;
+			border-radius:50%;
+			background:#fff;
+			vertical-align:middle;
+			margin:0px 10px;
+		}
+		.content .center{
+			width:100px;
+			background:rgba(255,255,255,0.1);
+			display:flex;
+			justify-content:center;
+			align-items:center;
+			flex-direction:column;
+
+		}
+		button{
+			border:0px;
+			width:76px;
+			height:26px;
+			color:#fff;
+			border-radius:5px;
+		}
+		.btn_l{
+			background:#01efd8;
+			margin-bottom:20px;
+		}
+		.btn_r{
+			background:#45a4fe;
+		}
+		.active {
+			background: blue;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="logo"></div>
+		<div class="content">
+			<ul class="left">
+				<li>
+					<i></i>
+					<span>AJAX</span>
+				</li>
+				<li>
+					<i></i>
+					<span>NODE</span>
+				</li>
+				<li>
+					<i></i>
+					<span>ECMA6</span>
+				</li>
+				<li>
+					<i></i>
+					<span>面向对象-中</span>
+				</li>
+				<li>
+					<i></i>
+					<span>JS基础-2</span>
+				</li>
+				<li>
+					<i></i>
+					<span>移动端实践</span>
+				</li>
+			</ul>
+			<div class="center">
+				<button class="btn_l"><向左</button>
+				<button class="btn_r">向右></button>
+			</div>
+			<ul class="right">
+				<li>
+					<i></i>
+					<span>小程序</span>
+				</li>
+				<li>
+					<i></i>
+					<span>JQuery</span>
+				</li>
+				<li>
+					<i></i>
+					<span>React</span>
+				</li>
+				<li>
+					<i></i>
+					<span>JS基础-1</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<script>
+		var left=document.querySelector('.left');
+		var right=document.querySelector('.right');
+		var btns=document.querySelectorAll('button');
+		
+		var leftChindren=left.children;//左边所有的li子项
+		var rightChindren=right.children;//右边所有的li子项
+		// console.log(leftChindren);
+
+		for(var i=0;i<leftChindren.length;i++){
+			leftChindren[i].onclick=function (){
+				this.classList.toggle('active');
+			};
+			
+		}
+		for(var i=0;i<rightChindren.length;i++){
+			rightChindren[i].onclick=function (){
+				this.classList.toggle('active');
+			};
+			
+		}
+
+		btns[1].onclick=function (){
+			for(var i=0;i<leftChindren.length;i++){
+				// console.log(leftChindren.length);
+				if(leftChindren[i].classList.contains('active')){
+					leftChindren[i].classList.remove('active');
+					right.appendChild(leftChindren[i]);
+					i--;
+				}
+			}
+		};
+
+
+		btns[0].onclick=function (){
+			for(var i=0;i<rightChindren.length;i++){
+				// console.log(rightChindren.length);
+				if(rightChindren[i].classList.contains('active')){
+					rightChindren[i].classList.remove('active');
+					left.appendChild(rightChindren[i]);
+					i--;
+				}
+			}
+		};
+
+	</script>
+</body>
+</html>

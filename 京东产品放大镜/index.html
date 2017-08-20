@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.clearfix:after{
+			content:"";
+			display:block;
+			clear:both;
+		}
+		ul{
+			margin:0px;
+			padding:0px;
+			list-style: none;
+		}
+		img{
+			vertical-align:top;
+			border:none;
+		}
+		a{
+			text-decoration: none;
+		}
+		.left,.right{
+			float:left;
+		}
+		.left_img{
+			width:450px;
+			height:450px;
+			border:1px solid #000;
+			margin-bottom:20px;
+			position:relative;
+		}
+		.left_img img,.left_img i,.left_img div{
+			position: absolute;
+		}
+		.left_img i{
+			width: 30px;
+		    height: 30px;
+		    right: 0;
+		    bottom: 0;
+		    background: url(img/ico.png) no-repeat 0px -24px;
+		}
+		.left_img div{
+			width:300px;
+			height:300px;
+			border:1px solid #ddd;
+			background-color:rgba(238,218,105,.5);
+			z-index: 2;
+			display:none;
+		}
+		
+
+		.left_img_list{
+			margin-bottom: 18px;
+			/*background: yellow;*/
+		}
+		.left_img_list a{
+			float:left;
+    		width: 22px;
+    		height: 32px;
+    		/*background:pink;*/
+    		margin:13px 7px;
+    		font:30px/32px arial;
+    		font-weight: bold;
+    		color:#ddd;
+    		/*background: url(img/ico.png) no-repeat -1px -54px;*/
+		}
+		.left_img_list a:nth-of-type(2){
+			/*background: url(img/ico.png) no-repeat -79px 0px;*/
+			right:0px;
+		}
+		.left_img_list a.active{
+			color:#000;
+		}
+		.left_img_list .img_list{
+			float:left;
+			width:380px;
+			height:58px;
+			overflow: hidden;
+			position: relative;
+		}
+		.img_list ul{
+			position: absolute;
+			left:0px;
+			top:0px;
+			width: 532px;
+		    height: 58px;
+		}
+		.img_list ul li{
+			float: left;
+    		margin: 0 9px;
+		}
+		li img{
+			border: 2px solid #fff;
+		}
+		li img.active{
+			border: 2px solid red;
+		}
+
+		.right{
+			margin-left:10px;
+			width:540px;
+			height:540px;
+			border:1px solid #000;
+			overflow: hidden;
+			display:none;
+			position: relative;
+		}
+		.right img{
+			position: absolute;
+			left:0px;
+			top:0px;
+		}
+		/*.left_img:hover .right{
+			display:block;
+		}
+		.left_img:hover div{
+			display:block;
+		}*/
+	</style>
+</head>
+<body>
+	<section class="clearfix">
+		<div class="left">
+			<div class="left_img">
+				<img src="img/img1.jpg" alt="">
+				<i></i>
+				<div></div>
+			</div>
+			<div class="left_img_list clearfix">
+				<a href="javascript:;" class="prev"><</a>
+				<div class="img_list">
+					<ul class="clearfix">
+						<li>
+							<img src="img/list_img1.jpg" alt="">
+						</li>
+						<li>
+							<img src="img/list_img2.jpg" alt="">
+						</li>
+						<li>
+							<img src="img/list_img3.jpg" alt="">
+						</li>
+						<li>
+							<img src="img/list_img4.jpg" alt="">
+						</li>
+						<li>
+							<img src="img/list_img5.jpg" alt="">
+						</li>
+						<li>
+							<img src="img/list_img6.jpg" alt="">
+						</li>
+						<li>
+							<img src="img/list_img7.jpg" alt="">
+						</li>
+					</ul>
+				</div>
+				<a href="javascript:;" class="next">></a>
+			</div>
+		</div>
+		<div class="right">
+			<img src="img/big_img1.jpg" alt="">
+		</div>
+	</section>
+	<script src="../fq_tools.js"></script>
+	<script>
+		var leftImg=document.querySelector('.left_img');
+		var imgMove=document.querySelector('.left_img div');
+
+		var rightImg=document.querySelector('.right');
+		var bImg=document.querySelector('.right img');
+
+
+		leftImg.onmouseover=function (){
+			imgMove.style.display='block';
+			rightImg.style.display='block';
+		}
+
+		leftImg.onmouseout=function (){
+			imgMove.style.display='';
+			rightImg.style.display='';
+		}
+
+		leftImg.onmousemove=function (e){
+			var l = e.pageX - this.offsetLeft - imgMove.offsetWidth / 2;
+		    var t = e.pageY - this.offsetTop - imgMove.offsetHeight / 2;
+		      
+		    if(l < 0) l = 0;
+		    	if(t < 0) t = 0;
+		      
+		    if(l > this.clientWidth - imgMove.offsetWidth){
+		    	l = this.clientWidth - imgMove.offsetWidth;
+		    }
+		    if(t > this.clientHeight - imgMove.offsetHeight){
+		        t = this.clientHeight - imgMove.offsetHeight;
+		    }
+		      
+		    var dx = imgMove.offsetLeft / (this.clientWidth - imgMove.offsetWidth);
+		    var dy = imgMove.offsetTop / (this.clientHeight - imgMove.offsetHeight);
+		      
+		    bImg.style.left = -dx * (bImg.clientWidth - rightImg.clientWidth) + 'px';
+		      
+		    bImg.style.top = -dy * (bImg.clientHeight - rightImg.clientHeight) + 'px';
+		      
+		    imgMove.style.left = l + 'px';
+		    imgMove.style.top = t + 'px';
+		};
+		
+		var ImgList=document.querySelectorAll('li img');
+		// console.log(lis);
+		var prevImg=ImgList[0];
+		for(var i=0;i<ImgList.length;i++){
+			ImgList[i].onmouseover=function (){
+				prevImg.classList.remove('active');
+				this.classList.add('active');
+				prevImg=this;
+			};
+		}
+
+		var prev=document.querySelector('.prev');
+		var next=document.querySelector('.next');
+		var Ul=document.querySelector('.img_list ul');
+		var UlInfo=Ul.getBoundingClientRect();
+		
+
+		prev.onmouseover=function (){
+			if(Ul.offsetLeft==-152){
+				this.className='active';
+			}
+			prev.onclick=function (){
+				fq.animate(Ul,{left:0},200,'linear');
+			};
+		};
+		prev.onmouseout=function (){
+			this.className='';
+		};
+		next.onmouseover=function (){
+			if(Ul.offsetLeft==0){
+				this.className='active';
+			}
+			next.onclick=function (){
+				fq.animate(Ul,{left:-152},200,'linear');
+			};
+		};
+		next.onmouseout=function (){
+			this.className='';
+		};
+		
+	</script>
+</body>
+</html>

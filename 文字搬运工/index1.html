@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		body,p{
+			margin:0;
+		}
+		.box{
+			width:1200px;
+			height:700px;
+			background:url(bg.png) no-repeat;
+			margin:0 auto;
+			display: flex;
+      		justify-content: center;
+      		align-items: center;
+		}
+		.box .box_content{
+			width:800px;
+			height:400px;			
+			background:#7067c8;
+			border-radius:10px;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			padding:30px;
+			font:16px/24px arial,"微软雅黑";
+		}
+		.box_content textarea{
+			padding:20px;
+			width:300px;
+			height:400px;
+			background:#fff;
+			max-width:300px;
+			max-height:400px;
+			border-radius:10px;
+			box-sizing:border-box;
+			font:16px/24px arial,"微软雅黑";
+			color:red;
+		}
+		.change .btn{
+			width:100px;
+			height:80px;
+			background:#6de0fd;
+			color:#fff;
+			text-align:center;
+			margin-bottom:20px;
+			border-radius:10px;
+		}
+		.btn div:nth-of-type(1){
+			font:48px/50px arial;
+		}
+		
+		.change p{
+			color:#6de0fd;
+			text-align:center;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="box_content">
+			<textarea name="" id="left_text"></textarea>
+			<div class="change">
+				<div class="btn">
+					<div>→</div>
+					<div>把文字右移</div>
+				</div>
+				<p class="num">
+					<span>0</span>/<span>0</span>
+				</p>
+			</div>
+			<textarea name="" id="right_text"></textarea>
+		</div>
+	</div>
+	<script>
+		//获取到所需的元素
+		var btn=document.querySelector('.btn');
+		// var num=document.querySelector('.num');
+		var leftText=document.querySelector('#left_text');
+		var rightText=document.querySelector('#right_text');
+		var spans=document.getElementsByTagName('span');
+		// console.log(spans);
+
+		btn.onclick=function (){
+			spans[0].innerHTML=0;
+			if(leftText.value==''){
+				alert('请给左边写点内容吧！');
+			}else{
+				rightText.value='';
+				if(leftText.value.length>=1){
+					spans[1].innerHTML=leftText.value.length;
+					var time;
+					time = setInterval(move,500);
+					function move(){
+						if (leftText.value.length){
+							spans[0].innerHTML++;
+							rightText.value +=leftText.value[0];
+							leftText.value = leftText.value.substring(1,leftText.value.length);
+						}else{
+							clearInterval(time);
+						}
+					};
+				}
+			}
+		}
+	</script>
+</body>
+</html>

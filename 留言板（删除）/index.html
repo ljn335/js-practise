@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		body{
+			margin:0px;
+		}
+		ul{
+			margin:0px;
+			padding: 0px;
+			list-style:none;
+		}
+		.box{
+			width:480px;
+			height:600px;
+			/*border:1px solid #000;*/
+			margin:20px auto;
+			background: #000;
+			display: flex;
+			justify-content:center;
+			align-items:center;
+		}
+		.box_content{
+			width:420px;
+			height:540px;
+			background:#fff;
+			border-radius: 50px;
+			padding:30px;
+			box-sizing:border-box;
+			/*display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			align-items: center;*/
+		}
+		/*.box_content div{
+			width:360px;
+			height:480px;
+			border: 1px solid #000;
+			border-radius: 50px;
+			box-sizing:border-box;
+			padding:40px;
+		}*/
+		.text{
+			width:100%;
+			height: 210px;
+			/*border-radius: 50px 50px 0px 0px;*/
+		}
+		.btn{
+			width:70px;
+			height:30px;
+			margin:5px 0px;
+		}
+		.list{
+			width:100%;
+			font:14px/30px "微软雅黑";
+		}
+		.list li{
+			padding:0px 20px;
+			height:30px;
+			background:#ccc;
+			margin:3px 0px;
+		}
+		.list li span{
+			float:left;
+		}
+		.list li button{
+			float:right;
+			margin-top:5px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="box_content">
+			<input type="text" class="text">
+			<button class="btn">留言</button>
+			<ul class="list">
+				<!-- <li>
+					<span>留言留言留言留言</span>
+					<button>删除</button>
+				</li> -->
+			</ul>
+		</div>
+	</div>
+	<script>
+		var text=document.querySelector('.text');
+		var btn=document.querySelector('.btn');
+		var list=document.querySelector('.list');
+
+		text.focus();
+
+		btn.onclick=function (){
+			if(text.value==''){
+				alert('请留言');
+				text.focus();
+			}else{
+				var str='';
+				str+=`<li>
+					<span>${text.value}</span>
+					<button>${'删除'}</button>`;
+				str+=`</li>`;
+				list.innerHTML+=str;
+				text.focus();
+				text.value='';
+				var lis=list.children;
+				var Del=list.querySelectorAll('button');
+				for(var i=0;i<Del.length;i++){
+					Del[i].onclick=function (){
+						list.removeChild(this.parentNode);
+						text.focus();
+					};
+				}
+
+			}
+			
+
+		};
+	</script>
+</body>
+</html>

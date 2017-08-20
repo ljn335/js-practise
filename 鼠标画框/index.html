@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		div{
+			border:1px dashed #000;
+			/*background:pink;*/
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<script>
+		console.log(window.innerWidth,window.innerHeight);
+		document.onmousedown=function (e){
+			
+			var Sl=e.pageX;
+			var St=e.pageY;
+			var Div=document.createElement('div');
+			document.body.appendChild(Div);
+
+
+			document.onmousemove=function (e){
+				var El=e.pageX;
+				var Et=e.pageY;
+
+				//左上----2
+				if(Sl>El&&St>Et){
+					Div.style.width=(Sl-El)+'px';
+					Div.style.height=(St-Et)+'px';
+					Div.style.left=El+'px';
+					Div.style.top=Et+'px';
+				}
+				// if(Sl>El&&St>Et&&El<=0&&Et<=0){
+				// 	El=0;
+				// 	Et=0;
+				// 	Div.style.width=(Sl-El)+'px';
+				// 	Div.style.height=(St-Et)+'px';
+				// 	Div.style.left=El+'px';
+				// 	Div.style.top=Et+'px';
+					
+				// }
+				//左下----3
+				if(Sl>El&&St<Et){
+					Div.style.width=(Sl-El)+'px';
+					Div.style.height=(Et-St)+'px';
+					Div.style.left=El+'px';
+					Div.style.top=St+'px';
+				}
+				//右下----4
+				if(Sl<El&&St<Et){
+					Div.style.width=(El-Sl)+'px';
+					Div.style.height=(Et-St)+'px';
+					Div.style.left=Sl+'px';
+					Div.style.top=St+'px';
+				}
+				//右上----1
+				if(Sl<El&&St>Et){
+					Div.style.width=(El-Sl)+'px';
+					Div.style.height=(St-Et)+'px';
+					Div.style.left=Sl+'px';
+					Div.style.top=Et+'px';
+				}
+
+
+			};
+			document.onmouseup=function (e){
+				// var Divinfo=Div.getBoundingClientRect();
+				// console.log(Divinfo)
+				document.onmousemove=document.onmouseup=null;
+				document.body.innerHTML='';
+
+			};
+			return false;
+		};
+
+	</script>
+</body>
+</html>

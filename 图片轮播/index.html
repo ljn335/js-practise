@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="index.css">
+</head>
+<body>
+	<div class="box">
+		<div class="shadow1"></div>
+		<div class="shadow2"></div>
+		<div class="box_content">
+			<div class="All_item">
+				<div class="item">
+					<img src="img/img2.jpg" alt="">
+					<div class="mask">
+						<p>妙味课堂</p>
+						<p>一个缔造“前端工程师”的地方</p>
+					</div>
+				</div>
+				<div class="item">
+					<img src="img/img3.jpg" alt="">
+					<div class="mask">
+						<p>VIP会员视频</p>
+						<p>国内海量前端开发视频汇总</p>
+					</div>
+				</div>
+				<div class="item">
+					<img src="img/img4.jpg" alt="">
+					<div class="mask">
+						<p>零基础WEB前端开发课程</p>
+						<p>PC端+移动端+响应式+bootstrap+less</p>
+					</div>
+				</div>
+				<div class="item">
+					<img src="img/img5.jpg" alt="">
+					<div class="mask">
+						<p>JavaScript资深全栈课程</p>
+						<p>作用域+闭包+原型链+核心算法+jQuery3+EC6</p>
+					</div>
+				</div>
+				<div class="item">
+					<img src="img/img6.jpg" alt="">
+					<div class="mask">
+						<p>关于我们</p>
+						<p>妙味新闻+公司介绍+讲师团队+联系我们</p>
+					</div>
+				</div>
+				<div class="item">
+					<img src="img/img2.jpg" alt="">
+					<div class="mask">
+						<p>妙味课堂</p>
+						<p>一个缔造“前端工程师”的地方</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="tools.js"></script>
+	<script>
+		var Allitem=document.querySelector('.All_item');
+		var mask=document.querySelectorAll('.item .mask');
+		//console.log(Allitem,mask);
+		var now=0;
+		var w=384;
+
+		setTimeout(function (){
+			mTween(mask[now],{bottom:0},40,'linear');
+		},600);
+		setTimeout(function (){
+			mTween(mask[now],{bottom:-80},40,'linear');
+		},2400);
+
+		var timer=setInterval(function (){
+			if(now==mask.length-1){
+				now=0;
+				Allitem.style.left=0;
+			}
+			now++;
+			mTween(Allitem,{left:-w*now},20,'linear');
+			setTimeout(function (){
+				mTween(mask[now],{bottom:0},40,'linear');
+			},600);
+			setTimeout(function (){
+				mTween(mask[now],{bottom:-80},40,'linear');
+			},2400);
+		},3000);
+	</script>
+</body>
+</html>

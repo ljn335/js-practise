@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		body,dl,dd{
+			margin:0;
+		}
+		ul{
+			margin:0;
+			padding:0;
+			list-style:none;
+		}
+		.clearfix:after{
+			content:"";
+			display:block;
+			clear:both;
+		}
+		.box{
+			width:1000px;
+			height:500px;
+			background:url(img/bg.jpg) no-repeat;
+			margin:50px auto;
+			display:flex;
+			justify-content:center;
+			align-items:center;
+		}
+		.content{
+			width:760px;
+			height:260px;
+			border:1px solid #000;
+		}
+		.content .nav{
+			height:30px;
+			padding:10px 0px 10px 30px;
+			background:url(img/nav_bg.png) no-repeat;
+		}
+		.nav span,.nav ul{
+			float:left;
+		}
+		.nav span{
+			font:14px/30px arial,"微软雅黑";;
+		}
+		.nav ul li{
+			float:left;
+			height:20px;
+			border:1px solid #1295b9;
+			padding:4px 0px;
+			margin-right:10px;
+			
+		}
+		.nav ul li span,.nav ul li button{
+			float:left;
+		}
+		.nav ul li span{
+			margin:0px 10px;
+			font:14px/20px arial,"微软雅黑";
+			color:#1295b9;
+		}
+		.nav ul li button{
+			border: 0px;
+			padding:0px;
+			width:19px;
+			height:19px;
+			background:url(img/btn.png) no-repeat;
+			margin:0px 4px;
+		}
+		.content .list{
+			height:168px;
+			padding:21px 30px;
+			background:url(img/type_bg.png) no-repeat;
+		}
+		.list li dl{
+			height:42px;
+			font:14px/42px arial,"微软雅黑";
+		}
+		dl dt,dl dd{
+			float:left;
+			margin-right:24px;
+		}
+		li dl dt{
+			color:#999;
+		}
+		.active{
+			color:#1295b9;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="content">
+			<nav class="nav">
+				<span>你的选择：</span>
+				<ul class="headList clearfix">
+					<!-- <li>
+						<span>苹果</span>
+						<button></button>
+					</li>
+					<li>
+						<span>苹果</span>
+						<button></button>
+					</li> -->
+				</ul>
+			</nav>
+			<ul class="list">
+				<li>
+					<dl>
+						<dt>品牌：</dt>
+						<dd>苹果</dd>
+						<dd>小米</dd>
+						<dd>锤子</dd>
+						<dd>魅族</dd>
+						<dd>华为</dd>
+						<dd>三星</dd>
+						<dd>OPPO</dd>
+						<dd>vivo</dd>
+						<dd>乐视</dd>
+						<dd>360</dd>
+						<dd>中兴</dd>
+						<dd>索尼</dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>尺寸：</dt>
+						<dd>3.0英寸以下</dd>
+						<dd>3.0-3.9英寸</dd>
+						<dd>4.0-4.5英寸</dd>
+						<dd>4.6-4.9英寸</dd>
+						<dd>5.0-5.5英寸</dd>
+						<dd>6.0英寸以上</dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>系统：</dt>
+						<dd>安卓(Andriod)</dd>
+						<dd>苹果(IOS)</dd>
+						<dd>微软(WindowPhone)</dd>
+						<dd>无</dd>
+						<dd>其他</dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt>网络：</dt>
+						<dd>联通3G</dd>
+						<dd>双卡单4G</dd>
+						<dd>双卡双4G</dd>
+						<dd>联通4G</dd>
+						<dd>电信4G</dd>
+						<dd>移动4G</dd>
+					</dl>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<script>
+		var li1=document.querySelector('.list li:nth-of-type(1)');
+		var li2=document.querySelector('.list li:nth-of-type(2)');
+		var li3=document.querySelector('.list li:nth-of-type(3)');
+		var li4=document.querySelector('.list li:nth-of-type(4)');
+		
+		
+		var childDd1=li1.querySelectorAll('dd');
+		var childDd2=li2.querySelectorAll('dd');
+		var childDd3=li3.querySelectorAll('dd');
+		var childDd4=li4.querySelectorAll('dd');
+
+		var headList=document.querySelector('.headList');
+
+		
+		var prev1=childDd1[0];
+
+		var li1=document.createElement('li');
+		var span1=document.createElement('span');
+		var button1=document.createElement('button');
+
+		for(var i=0;i<childDd1.length;i++){
+			childDd1[i].onclick=function (){
+
+				prev1.classList.remove('active');
+				this.classList.add('active');
+				prev1=this;
+				
+				span1.innerHTML=this.innerHTML;
+				li1.appendChild(span1);
+				li1.appendChild(button1);
+				headList.appendChild(li1);
+			};
+		}
+		
+
+		var prev2=childDd2[0];
+
+		var li2=document.createElement('li');
+		var span2=document.createElement('span');
+		var button2=document.createElement('button');
+
+		for(var i=0;i<childDd2.length;i++){
+			childDd2[i].onclick=function (){
+				prev2.classList.remove('active');
+				this.classList.add('active');
+				prev2=this;
+
+				span2.innerHTML=this.innerHTML;
+				li2.appendChild(span2);
+				li2.appendChild(button2);
+				headList.appendChild(li2);
+			};
+		}
+
+		var prev3=childDd3[0];
+
+		var li3=document.createElement('li');
+		var span3=document.createElement('span');
+		var button3=document.createElement('button');
+
+		for(var i=0;i<childDd3.length;i++){
+			childDd3[i].onclick=function (){
+				prev3.classList.remove('active');
+				this.classList.add('active');
+				prev3=this;
+
+				span3.innerHTML=this.innerHTML;
+				li3.appendChild(span3);
+				li3.appendChild(button3);
+				headList.appendChild(li3);
+			};
+		}
+
+		var prev4=childDd4[0];
+
+		var li4=document.createElement('li');
+		var span4=document.createElement('span');
+		var button4=document.createElement('button');
+
+		for(var i=0;i<childDd4.length;i++){
+			childDd4[i].onclick=function (){
+				prev4.classList.remove('active');
+				this.classList.add('active');
+				prev4=this;
+
+				span4.innerHTML=this.innerHTML;
+				li4.appendChild(span4);
+				li4.appendChild(button4);
+				headList.appendChild(li4);
+			};
+		}
+	</script>
+</body>
+</html>

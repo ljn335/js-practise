@@ -1,0 +1,76 @@
+body{
+	margin:0;
+}
+ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+a{
+	text-decoration:none;
+	color:#000;
+}
+.clearfix:after{
+	content:"";
+	display:block;
+	clear:both;
+}
+.box{
+	width:1200px;
+	height:800px;
+	background:url(img/bg.png) no-repeat;
+	margin:auto;
+	/*padding-top:300px;*/
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+.list{
+
+}
+.list .item{
+	float:left;
+	position:relative;
+	width:203px;
+	height:230px;
+	margin-right:20px;
+}
+.list .item:nth-of-type(4){
+	margin-right:0px;
+}
+.item .pic,.item .btn,.item .ico{
+	position:absolute;
+}
+.item .pic{
+	width:203px;
+	height:230px;
+	background:url(img/meinv2.png) no-repeat -16px -6px;
+	left:0px;
+	bottom:0px;
+}
+
+.item .btn{
+	width:80px;
+	height:91px;
+	background:url(img/love.png) no-repeat -9px -3px;
+	left:61px;
+	top:-45px;
+	text-align:center;
+	font:24px/91px arial;
+	color:#fff;
+	/*z-index: 2;*/
+}
+.item .btn:hover{
+	background:url(img/love.png) no-repeat -146px -3px;
+}
+.item .ico{
+	width:32px;
+	height:27px;
+	background:url(img/heart.png) no-repeat;
+	left:85px;
+	top:-71px;
+	display:none;
+}
+/*.item .btn.active{
+	background:url(img/love.png) no-repeat -146px -3px;
+}*/
